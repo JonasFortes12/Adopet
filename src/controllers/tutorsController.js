@@ -42,6 +42,31 @@ class TutorController {
 
     }
 
+    static getTutorById = async (req, res) => {
+
+        let idTutor = req.params.id
+
+        try {
+            res.status(200).send(await tutors.findById(idTutor))
+        } catch (err) {
+            res.status(404).send({message: "Do not found ID  - " + err.message})
+        }
+
+    }
+
+    static deleteTutorById = async (req, res) => {
+        
+        let idTutor = req.params.id
+
+        try {
+            await tutors.findByIdAndRemove(idTutor)
+            res.status(200).send("Tutor deleted successfuly!")
+        } catch (err) {
+            res.status(500).send({message: err.message})
+        }
+
+    }
+
 
 }
 
