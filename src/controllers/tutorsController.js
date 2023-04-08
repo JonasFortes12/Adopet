@@ -15,6 +15,23 @@ class TutorController {
 
     }
 
+    static updateTutor = async (req, res) =>{
+
+        let idTutor = req.params.id 
+
+        try {
+            await tutors.findByIdAndUpdate(idTutor, {$set: req.body})
+            res.status(201).send(await tutors.findById(idTutor))
+
+        } catch (err) {
+            res.status(500).send({message: err.message})
+        }
+
+
+
+    }
+
+
 }
 
 export default TutorController;

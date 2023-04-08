@@ -6,5 +6,7 @@ const router = express.Router();
 
 router.post('/tutor', TutorController.registerTutor)
 
+router.put('/tutor/:id', TutorController.updateTutor)
+
 
 export default router;
