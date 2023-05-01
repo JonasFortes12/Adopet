@@ -50,9 +50,14 @@ class TutorController {
     static getTutorById = async (req, res) => {
 
         let idTutor = req.params.id
+        const targetTutor = await tutors.findById(idTutor);
 
         try {
-            res.status(200).send(await tutors.findById(idTutor))
+            if(targetTutor){
+                res.status(200).send(targetTutor)
+            }else{
+                throw new Error();
+            }
         } catch (err) {
             res.status(404).send({message: "Do not found ID  - " + err.message})
         }
