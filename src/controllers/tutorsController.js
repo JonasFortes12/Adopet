@@ -34,7 +34,12 @@ class TutorController {
     static getAllTutors = async (req, res) =>{
         
         try {
-            res.status(200).send(await tutors.find())
+            const allTutors = await tutors.find();
+            if(allTutors.length === 0){
+                res.status(200).send("Do not found any tutor!")
+            }else{
+                res.status(200).send(allTutors)
+            }
 
         } catch (err) {
             res.status(500).send({message: err.message})
